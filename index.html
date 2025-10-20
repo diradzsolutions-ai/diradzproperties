@@ -58,14 +58,16 @@
                 <span class="text-gold font-black">DIRADZ</span>
                 <span class="text-dark-text font-semibold">PROPERTIES</span>
             </a>
-            <!-- Desktop Navigation with Updated Link Order -->
-            <div class="hidden lg:flex items-center space-x-8">
+            <!-- Desktop Navigation with New Structure -->
+            <div class="hidden lg:flex items-center space-x-6 text-sm font-medium">
                 <a href="index.html" class="text-gold font-semibold transition">Home</a> <!-- Active Page -->
-                <a href="properties.html" class="text-gray-600 hover:text-gold transition">Buy</a>
-                <a href="#" class="text-gray-600 hover:text-gold transition">Sell</a> <!-- Added Sell Link -->
-                <a href="about.html" class="text-gray-600 hover:text-gold transition">About Us</a>
+                <a href="properties.html?type=Plot" class="text-gray-600 hover:text-gold transition">Plots</a>
+                <a href="properties.html?type=Villa" class="text-gray-600 hover:text-gold transition">Villas</a>
+                <a href="properties.html?type=Apartment" class="text-gray-600 hover:text-gold transition">Apartments</a>
+                <a href="properties.html?type=RowHouse" class="text-gray-600 hover:text-gold transition">Row Houses</a>
+                <a href="properties.html?category=Luxury" class="text-gray-600 hover:text-gold transition">Luxuries</a>
+                <a href="about.html" class="text-gray-600 hover:text-gold transition">Discover</a>
                 <a href="blog.html" class="text-gray-600 hover:text-gold transition">Blog</a>
-                <a href="contact.html" class="text-gray-600 hover:text-gold transition">Contact</a>
             </div>
             <!-- Mobile Menu Button -->
             <div class="lg:hidden">
@@ -89,7 +91,7 @@
             <div class="relative z-10 p-6">
                 <h1 class="text-5xl md:text-7xl font-black font-montserrat mb-4">Find Your Dream Property with Diradz</h1>
                 <p class="text-xl text-gray-200 mb-8 max-w-2xl mx-auto">The ultimate destination for premium real estate. We turn aspirations into addresses.</p>
-                <!-- Search Bar with action linking to properties page -->
+                <!-- Search Bar -->
                 <div class="bg-white rounded-lg p-4 md:p-2 max-w-4xl mx-auto shadow-2xl">
                     <form class="grid grid-cols-1 md:grid-cols-4 gap-4 items-center" action="properties.html" method="GET">
                         <div class="md:col-span-2">
@@ -99,8 +101,11 @@
                         <div>
                             <label for="type" class="sr-only">Property Type</label>
                             <select id="type" name="type" class="w-full p-3 text-gray-700 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-gold">
-                                <option>Buy</option>
-                                <option>Rent</option>
+                                <option value="">Any Type</option>
+                                <option value="Villa">Villa</option>
+                                <option value="Apartment">Apartment</option>
+                                <option value="Plot">Plot</option>
+                                <option value="RowHouse">Row House</option>
                             </select>
                         </div>
                         <button type="submit" class="w-full bg-gold text-white font-semibold p-3 rounded-lg hover:opacity-90 transition flex items-center justify-center gap-2">
