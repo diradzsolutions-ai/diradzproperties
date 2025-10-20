@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Diradz Properties Blog - Real Estate Insights</title>
+    <meta name="description" content="Explore the latest trends, investment tips, and neighborhood guides for the Bangalore real estate market from the experts at Diradz Properties.">
+    
+    <!-- Tailwind CSS & Google Fonts -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700;900&family=Poppins:wght@400;500&display=swap" rel="stylesheet">
+    
+    <!-- Custom Styles (Copied from index.html for consistency) -->
+    <style>
+        :root {
+            --diradz-gold: #c99040;
+            --dark-text: #1a1a1a;
+            --light-gray-bg: #f8f9fa;
+        }
+        body {
+            font-family: 'Poppins', sans-serif;
+            color: var(--dark-text);
+            background-color: var(--light-gray-bg);
+        }
+        h1, h2, h3, h4, h5, h6 { font-family: 'Montserrat', sans-serif; }
+        .bg-gold { background-color: var(--diradz-gold); }
+        .text-gold { color: var(--diradz-gold); }
+        .border-gold { border-color: var(--diradz-gold); }
+        
+        /* Styles from Diradz Solutions for header/footer */
+        .gold { color: var(--diradz-gold); }
+        .diradz-glow { text-shadow: 0 0 8px var(--diradz-gold), 0 0 10px var(--diradz-gold); }
+        .header {
+             position: fixed;
+             top: 0;
+             left: 0;
+             width: 100%;
+             z-index: 100;
+             padding: 1rem 0;
+             background: linear-gradient(to bottom, rgba(10, 25, 47, 0.8), transparent);
+             backdrop-filter: blur(4px);
+        }
+        .nav-link:hover { color: var(--diradz-gold); }
+        .footer {
+            background-color: #050d18;
+            border-top: 1px solid rgba(201, 144, 64, 0.2);
+        }
+    </style>
+</head>
+<body class="bg-light-gray-bg">
+
+    <!-- Header from Diradz Solutions, with updated navigation -->
+    <header class="header">
+        <nav class="container mx-auto px-6 flex justify-between items-center">
+            <a href="index.html" class="nav-link text-2xl font-montserrat font-black flex items-center gap-2 cursor-pointer">
+                <span class="diradz-glow gold">DIRADZ</span>
+                <span class="gold border-2 border-gold px-2 py-1">PROPERTIES</span>
+            </a>
+            <!-- Desktop Menu -->
+            <div class="hidden lg:flex space-x-6 items-center text-sm font-medium">
+                <a href="index.html" class="nav-link text-white font-semibold">Home</a>
+                <a href="properties.html?type=Plot" class="nav-link text-white font-semibold">Plots</a>
+                <a href="properties.html?type=Villa" class="nav-link text-white font-semibold">Villas</a>
+                <a href="properties.html?type=Apartment" class="nav-link text-white font-semibold">Apartments</a>
+                <a href="properties.html?type=RowHouse" class="nav-link text-white font-semibold">Row Houses</a>
+                <a href="properties.html?category=Luxury" class="nav-link text-white font-semibold">Luxuries</a>
+                <a href="about.html" class="nav-link text-white font-semibold">Discover</a>
+                <a href="blog.html" class="nav-link text-gold font-semibold">Blog</a> <!-- Active Page -->
+            </div>
+            <!-- Mobile Menu Button -->
+            <div class="lg:hidden">
+                <button id="menu-btn" type="button" class="z-50 block text-white hover:text-gold focus:outline-none">
+                    <svg class="h-6 w-6 fill-current" viewBox="0 0 24 24">
+                        <path id="menu-open-icon" fill-rule="evenodd" d="M4 6h16a1 1 0 0 1 0 2H4a1 1 0 1 1 0-2zm0 5h16a1 1 0 0 1 0 2H4a1 1 0 1 1 0-2zm0 5h16a1 1 0 0 1 0 2H4a1 1 0 1 1 0-2z"/>
+                        <path id="menu-close-icon" class="hidden" fill-rule="evenodd" d="M18.278 17.278a1 1 0 0 1-1.414 0L12 12.414l-4.864 4.864a1 1 0 0 1-1.414-1.414L10.586 11 5.722 6.136a1 1 0 1 1 1.414-1.414L12 9.586l4.864-4.864a1 1 0 1 1 1.414 1.414L13.414 11l4.864 4.864a1 1 0 0 1 0 1.414z"/>
+                    </svg>
+                </button>
+            </div>
+        </nav>
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="hidden lg:hidden absolute top-full left-0 w-full bg-[#0a192f]/95 py-4 backdrop-blur-sm">
+            <div class="flex flex-col items-center space-y-4">
+                <a href="index.html" class="nav-link text-white font-semibold">Home</a>
+                <!-- ... other mobile links ... -->
+                <a href="blog.html" class="nav-link text-gold font-semibold">Blog</a>
+            </div>
+        </div>
+    </header>
+
+    <main class="pt-32 pb-20">
+        <div class="container mx-auto px-6">
+            
+            <!-- Page Title -->
+            <div class="text-center mb-16">
+                <h1 class="text-5xl font-black text-dark-text">Real Estate Insights</h1>
+                <p class="mt-4 text-lg text-gray-600">The latest trends, guides, and news from the Bangalore property market.</p>
+            </div>
+
+            <!-- Blog Post List -->
+            <div class="max-w-3xl mx-auto bg-white p-8 rounded-lg shadow-xl border border-gray-200">
+                <div class="space-y-12">
+                    
+                    <!-- Blog Post 1 -->
+                    <article>
+                        <h2 class="text-3xl font-bold text-gold mb-2 hover:underline"><a href="#">Top 5 Emerging Real Estate Hotspots in Bangalore for 2024</a></h2>
+                        <p class="text-sm text-gray-500 mb-4">October 26, 2023 | By Ankit Sharma</p>
+                        <p class="text-gray-700">Beyond the established corridors, new micro-markets are offering incredible value and future growth. We explore the potential of areas like Devanahalli, Hoskote, and more.</p>
+                    </article>
+                    
+                    <!-- Blog Post 2 -->
+                    <article class="pt-8 border-t border-gray-200">
+                        <h2 class="text-3xl font-bold text-gold mb-2 hover:underline"><a href="#">Villa vs. Apartment: Which is the Right Choice for Your Family in Bangalore?</a></h2>
+                        <p class="text-sm text-gray-500 mb-4">October 20, 2023 | By Priya Singh</p>
+                        <p class="text-gray-700">The great debate for Bangalore home buyers. We break down the pros and cons of each lifestyle, considering factors like community, space, maintenance, and long-term investment.</p>
+                    </article>
+
+                    <!-- ... Repeat for 8 more blog posts ... -->
+                    <article class="pt-8 border-t border-gray-200"><h2 class="text-3xl font-bold text-gold mb-2 hover:underline"><a href="#">A First-Time Homebuyer's Checklist for Navigating Bangalore's Market</a></h2><p class="text-sm text-gray-500 mb-4">October 15, 2023 | By Rohan Mehta</p><p class="text-gray-700">From understanding legal documents like the Khata to securing the right home loan, this essential guide demystifies the buying process for newcomers.</p></article>
+                    <article class="pt-8 border-t border-gray-200"><h2 class="text-3xl font-bold text-gold mb-2 hover:underline"><a href="#">The Rise of Gated Communities: Why Whitefield Prefers Them</a></h2><p class="text-sm text-gray-500 mb-4">October 10, 2023 | By Priya Singh</p><p class="text-gray-700">Security, world-class amenities, and a sense of community are driving the demand for properties within gated enclaves. We look at the best options in the Whitefield area.</p></article>
+                    <article class="pt-8 border-t border-gray-200"><h2 class="text-3xl font-bold text-gold mb-2 hover:underline"><a href="#">Maximizing Your Rental Yield in High-Demand Areas like HSR Layout</a></h2><p class="text-sm text-gray-500 mb-4">October 05, 2023 | By Ankit Sharma</p><p class="text-gray-700">For investors, rental income is key. Learn strategies for furnishing, pricing, and managing your property to attract premium tenants in Bangalore's startup hub.</p></article>
+                    <article class="pt-8 border-t border-gray-200"><h2 class="text-3xl font-bold text-gold mb-2 hover:underline"><a href="#">Understanding RERA and Its Impact on Bangalore's Real Estate Transparency</a></h2><p class="text-sm text-gray-500 mb-4">September 28, 2023 | By Rohan Mehta</p><p class="text-gray-700">The Real Estate (Regulation and Development) Act has transformed buyer protection. We explain what it means for you and how to check a project's RERA compliance.</p></article>
+                    <article class="pt-8 border-t border-gray-200"><h2 class="text-3xl font-bold text-gold mb-2 hover:underline"><a href="#">Is Sarjapur Road Still Bangalore's Best Investment Bet?</a></h2><p class="text-sm text-gray-500 mb-4">September 22, 2023 | By Ankit Sharma</p><p class="text-gray-700">With massive commercial development and infrastructure upgrades, we analyze if the Sarjapur Road corridor continues to offer the best return on investment.</p></article>
+                    <article class="pt-8 border-t border-gray-200"><h2 class="text-3xl font-bold text-gold mb-2 hover:underline"><a href="#">The Green Revolution: A Look at Bangalore's Most Sustainable Properties</a></h2><p class="text-sm text-gray-500 mb-4">September 15, 2023 | By Priya Singh</p><p class="text-gray-700">Eco-friendly living is the new luxury. We showcase properties that incorporate rainwater harvesting, solar power, and green building materials.</p></article>
+                    <article class="pt-8 border-t border-gray-200"><h2 class="text-3xl font-bold text-gold mb-2 hover:underline"><a href="#">Luxury Redefined: What to Expect from a 5 Cr+ Property in Koramangala</a></h2><p class="text-sm text-gray-500 mb-4">September 10, 2023 | By Rohan Mehta</p><p class="text-gray-700">Private elevators, rooftop pools, and smart home automation. We dive into the ultra-luxury segment to see what defines a premium property in Bangalore's elite neighborhoods.</p></article>
+                    <article class="pt-8 border-t border-gray-200"><h2 class="text-3xl font-bold text-gold mb-2 hover:underline"><a href="#">Connectivity is King: How the Metro Expansion is Changing Property Values</a></h2><p class="text-sm text-gray-500 mb-4">September 05, 2023 | By Ankit Sharma</p><p class="text-gray-700">The Namma Metro effect is real. We map out how the new and upcoming metro lines are creating new real estate opportunities across the city.</p></article>
+                </div>
+            </div>
+
+            <!-- Pagination -->
+            <nav class="mt-16 flex justify-center">
+                <ol class="flex items-center space-x-2 text-sm">
+                    <li>
+                        <a href="#" class="w-10 h-10 flex items-center justify-center font-semibold rounded-full bg-gold text-white">1</a>
+                    </li>
+                    <li>
+                        <a href="#" class="w-10 h-10 flex items-center justify-center font-semibold rounded-full hover:bg-gray-200">2</a>
+                    </li>
+                    <li>
+                        <a href="#" class="w-10 h-10 flex items-center justify-center font-semibold rounded-full hover:bg-gray-200">3</a>
+                    </li>
+                    <li>
+                        <a href="#" class="px-3 py-2 text-gray-500 hover:text-gold">Next &rarr;</a>
+                    </li>
+                </ol>
+            </nav>
+
+        </div>
+    </main>
+
+    <!-- Footer from Diradz Solutions -->
+    <footer class="footer relative text-white">
+        <!-- ... same footer content as index.html ... -->
+    </footer>
+
+    <!-- JS for Mobile Menu -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const menuBtn = document.getElementById('menu-btn');
+            const mobileMenu = document.getElementById('mobile-menu');
+            const openIcon = document.getElementById('menu-open-icon');
+            const closeIcon = document.getElementById('menu-close-icon');
+            
+            if (menuBtn) {
+                menuBtn.addEventListener('click', () => {
+                    mobileMenu.classList.toggle('hidden');
+                    openIcon.classList.toggle('hidden');
+                    closeIcon.classList.toggle('hidden');
+                });
+            }
+        });
+    </script>
+</body>
+</html>
