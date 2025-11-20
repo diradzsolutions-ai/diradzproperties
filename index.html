@@ -1,254 +1,429 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="scroll-smooth">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Diradz Properties - Find Your Dream Property</title>
-    <meta name="description" content="Buy, sell, or rent premium properties with Diradz Properties. Explore luxury apartments, modern villas, and commercial spaces.">
-    <meta name="keywords" content="real estate, diradz properties, buy property, sell property, luxury homes, apartments for sale, real estate bangalore">
+    <title>Diradz Properties | Trusted Real Estate Advisory</title>
+    <meta name="description" content="Diradz Properties is a premier property advisory firm. Crafting the future of real estate with integrity and excellence.">
     
-    <!-- Tailwind CSS & Google Fonts -->
+    <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700;900&family=Poppins:wght@400;500&display=swap" rel="stylesheet">
-    
-    <!-- Swiper.js for Carousels -->
-    <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
-    
-    <!-- Custom Styles from Diradz Solutions -->
-    <style>
-        :root {
-            --diradz-gold: #c99040;
-            --dark-text: #1a1a1a;
-            --light-gray-bg: #f8f9fa;
-        }
-        /* Base styles for the real estate site */
-        body {
-            font-family: 'Poppins', sans-serif;
-            color: var(--dark-text);
-            background-color: #fff; /* White background for main content */
-        }
-        h1, h2, h3, h4, h5, h6 {
-            font-family: 'Montserrat', sans-serif;
-        }
-        .bg-gold { background-color: var(--diradz-gold); }
-        .text-gold { color: var(--diradz-gold); }
-        .border-gold { border-color: var(--diradz-gold); }
-        
-        /* Swiper button styles from real estate site */
-        .swiper-button-gold {
-            color: var(--diradz-gold);
-            background-color: rgba(255, 255, 255, 0.8);
-            border-radius: 50%;
-            width: 44px;
-            height: 44px;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-        }
-        .swiper-button-gold::after { font-size: 18px; font-weight: 900; }
-        .swiper-pagination-bullet-active { background-color: var(--diradz-gold) !important; }
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=Plus+Jakarta+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
 
-        /* Styles copied from Diradz Solutions for header/footer */
-        .gold { color: var(--diradz-gold); }
-        .diradz-glow { text-shadow: 0 0 8px var(--diradz-gold), 0 0 10px var(--diradz-gold); }
-        .header {
-             position: fixed;
-             top: 0;
-             left: 0;
-             width: 100%;
-             z-index: 100;
-             padding: 1rem 0;
-             background: linear-gradient(to bottom, rgba(10, 25, 47, 0.8), transparent);
-             backdrop-filter: blur(4px);
+    <!-- Phosphor Icons -->
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        background: '#0b0f19',
+                        surface: '#131b2c',
+                        glass: 'rgba(255, 255, 255, 0.03)',
+                        glassBorder: 'rgba(255, 255, 255, 0.08)',
+                        accent: '#dfa453',
+                        accentGlow: '#fbbf24',
+                    },
+                    fontFamily: {
+                        sans: ['Plus Jakarta Sans', 'sans-serif'],
+                        display: ['Outfit', 'sans-serif'],
+                    },
+                }
+            }
         }
-        .nav-link:hover { color: var(--diradz-gold); }
-        .footer {
-            background-color: #050d18;
-            border-top: 1px solid rgba(201, 144, 64, 0.2);
+    </script>
+
+    <style>
+        body { background-color: #0b0f19; color: #cbd5e1; overflow-x: hidden; }
+        ::-webkit-scrollbar { width: 6px; }
+        ::-webkit-scrollbar-track { background: #0b0f19; }
+        ::-webkit-scrollbar-thumb { background: #334155; border-radius: 10px; }
+        .glass-panel {
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
         }
+        .glass-nav {
+            background: rgba(11, 15, 25, 0.8);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        }
+        .text-gradient-gold {
+            background: linear-gradient(135deg, #fcd34d 0%, #dfa453 50%, #b45309 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .hover-glow:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 0 25px rgba(223, 164, 83, 0.1);
+            border-color: rgba(223, 164, 83, 0.3);
+            transition: all 0.4s ease;
+        }
+        .fade-in-up {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.8s ease, transform 0.8s ease;
+        }
+        .fade-in-up.visible { opacity: 1; transform: translateY(0); }
+        
+        /* Orb Animation */
+        .orb { position: absolute; border-radius: 50%; filter: blur(80px); opacity: 0.3; z-index: -1; animation: float 15s infinite ease-in-out; }
+        .orb-1 { top: -10%; left: -10%; width: 500px; height: 500px; background: #1e40af; }
+        .orb-2 { bottom: 10%; right: -5%; width: 400px; height: 400px; background: #b45309; animation-delay: -5s; }
+        @keyframes float { 0%, 100% { transform: translate(0, 0); } 50% { transform: translate(20px, -20px); } }
     </style>
 </head>
-<body class="bg-white">
+<body class="antialiased selection:bg-accent selection:text-black font-sans">
 
-    <!-- Header from Diradz Solutions, with updated navigation -->
-    <header class="header">
-        <nav class="container mx-auto px-6 flex justify-between items-center">
-            <a href="index.html" class="nav-link text-2xl font-montserrat font-black flex items-center gap-2 cursor-pointer">
-                <span class="diradz-glow gold">DIRADZ</span>
-                <span class="gold border-2 border-gold px-2 py-1">PROPERTIES</span>
-            </a>
-            <!-- Desktop Menu with new structure -->
-            <div class="hidden lg:flex space-x-6 items-center text-sm">
-                <a href="index.html" class="nav-link text-gold font-semibold">Home</a>
-                <a href="properties.html?type=Plot" class="nav-link text-white font-semibold">Plots</a>
-                <a href="properties.html?type=Villa" class="nav-link text-white font-semibold">Villas</a>
-                <a href="properties.html?type=Apartment" class="nav-link text-white font-semibold">Apartments</a>
-                <a href="properties.html?type=RowHouse" class="nav-link text-white font-semibold">Row Houses</a>
-                <a href="properties.html?category=Luxury" class="nav-link text-white font-semibold">Luxuries</a>
-                <a href="about.html" class="nav-link text-white font-semibold">Discover</a>
-                <a href="blog.html" class="nav-link text-white font-semibold">Blog</a>
-            </div>
-            <!-- Mobile Menu Button -->
-            <div class="lg:hidden">
-                <button id="menu-btn" type="button" class="z-50 block text-white hover:text-gold focus:outline-none">
-                    <svg class="h-6 w-6 fill-current" viewBox="0 0 24 24">
-                        <path id="menu-open-icon" fill-rule="evenodd" d="M4 6h16a1 1 0 0 1 0 2H4a1 1 0 1 1 0-2zm0 5h16a1 1 0 0 1 0 2H4a1 1 0 1 1 0-2zm0 5h16a1 1 0 0 1 0 2H4a1 1 0 1 1 0-2z"/>
-                        <path id="menu-close-icon" class="hidden" fill-rule="evenodd" d="M18.278 17.278a1 1 0 0 1-1.414 0L12 12.414l-4.864 4.864a1 1 0 0 1-1.414-1.414L10.586 11 5.722 6.136a1 1 0 1 1 1.414-1.414L12 9.586l4.864-4.864a1 1 0 1 1 1.414 1.414L13.414 11l4.864 4.864a1 1 0 0 1 0 1.414z"/>
-                    </svg>
-                </button>
-            </div>
-        </nav>
-        <!-- Mobile Menu -->
-        <div id="mobile-menu" class="hidden lg:hidden absolute top-full left-0 w-full bg-[#0a192f]/95 py-4 backdrop-blur-sm">
-            <div class="flex flex-col items-center space-y-4">
-                <a href="index.html" class="nav-link text-white font-semibold">Home</a>
-                <a href="properties.html?type=Plot" class="nav-link text-white font-semibold">Plots</a>
-                <a href="properties.html?type=Villa" class="nav-link text-white font-semibold">Villas</a>
-                <a href="properties.html?type=Apartment" class="nav-link text-white font-semibold">Apartments</a>
-                <a href="properties.html?type=RowHouse" class="nav-link text-white font-semibold">Row Houses</a>
-                <a href="properties.html?category=Luxury" class="nav-link text-white font-semibold">Luxuries</a>
-                <a href="about.html" class="nav-link text-white font-semibold">Discover</a>
-                <a href="blog.html" class="nav-link text-white font-semibold">Blog</a>
+    <div class="fixed inset-0 overflow-hidden pointer-events-none">
+        <div class="orb orb-1"></div>
+        <div class="orb orb-2"></div>
+    </div>
+
+    <!-- Navigation -->
+    <nav class="fixed w-full z-50 glass-nav" id="navbar">
+        <div class="max-w-7xl mx-auto px-6 lg:px-8">
+            <div class="flex justify-between h-20 items-center">
+                <div class="flex items-center gap-3 cursor-pointer group" onclick="window.scrollTo(0,0)">
+                    <div class="relative w-9 h-9 flex items-center justify-center">
+                        <div class="absolute inset-0 bg-accent opacity-20 blur-md rounded-full group-hover:opacity-40 transition-opacity"></div>
+                        <span class="font-display font-bold text-xl text-accent relative z-10">D</span>
+                    </div>
+                    <div class="flex flex-col">
+                        <span class="font-display text-lg font-bold tracking-wide text-white">DIRADZ</span>
+                        <span class="text-[8px] tracking-[0.2em] text-gray-400 uppercase">Properties</span>
+                    </div>
+                </div>
+
+                <!-- Desktop Menu -->
+                <div class="hidden md:flex space-x-8 items-center">
+                    <a href="index.html" class="text-xs font-medium text-white border-b border-accent pb-1 uppercase tracking-wider">Home</a>
+                    <a href="properties.html" class="text-xs font-medium text-gray-300 hover:text-white transition-all uppercase tracking-wider">Properties</a>
+                    <a href="blog.html" class="text-xs font-medium text-gray-300 hover:text-white transition-all uppercase tracking-wider">Insights</a>
+                    <a href="#vision" class="text-xs font-medium text-gray-300 hover:text-white transition-all uppercase tracking-wider">Vision</a>
+                    <a href="#contact" class="group relative px-5 py-2 overflow-hidden rounded-full bg-white/5 hover:bg-white/10 transition-all border border-white/10">
+                        <div class="absolute inset-0 w-full h-full bg-gradient-to-r from-transparent via-white/10 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-700"></div>
+                        <span class="relative text-xs font-bold text-accent group-hover:text-white transition-colors uppercase tracking-wider">Consult Now</span>
+                    </a>
+                </div>
+
+                <!-- Mobile Menu Button -->
+                <div class="md:hidden">
+                    <button id="mobile-menu-btn" class="text-white p-2"><i class="ph ph-list text-2xl"></i></button>
+                </div>
             </div>
         </div>
-    </header>
+        <!-- Mobile Menu Panel -->
+        <div id="mobile-menu" class="hidden md:hidden glass-panel border-t-0 absolute w-full bg-background">
+            <div class="px-4 pt-2 pb-6 space-y-1">
+                <a href="index.html" class="block px-3 py-4 text-sm font-medium text-white border-b border-white/5">Home</a>
+                <a href="properties.html" class="block px-3 py-4 text-sm font-medium text-gray-300 hover:text-white border-b border-white/5">Properties</a>
+                <a href="blog.html" class="block px-3 py-4 text-sm font-medium text-gray-300 hover:text-white border-b border-white/5">Insights</a>
+                <a href="#contact" class="block px-3 py-4 text-sm font-bold text-accent">Consult Now</a>
+            </div>
+        </div>
+    </nav>
 
-    <main>
-        <!-- Main content of the real estate site remains here -->
-        <!-- 1. Hero Section -->
-        <section class="relative h-screen flex items-center justify-center text-center text-white">
-            <!-- Background Video -->
-            <video class="absolute inset-0 w-full h-full object-cover z-[-1]" autoplay loop muted poster="https://images.pexels.com/photos/323780/pexels-photo-323780.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2">
-                <source src="https://videos.pexels.com/video-files/857251/857251-hd_1920_1080_25fps.mp4" type="video/mp4">
-                Your browser does not support the video tag.
-            </video>
-            <div class="absolute inset-0 bg-black/50"></div>
-            <div class="relative z-10 p-6">
-                <h1 class="text-5xl md:text-7xl font-black font-montserrat mb-4">Find Your Dream Property with Diradz</h1>
-                <p class="text-xl text-gray-200 mb-8 max-w-2xl mx-auto">The ultimate destination for premium real estate. We turn aspirations into addresses.</p>
-                <!-- Search Bar -->
-                 <div class="bg-white rounded-lg p-4 md:p-2 max-w-4xl mx-auto shadow-2xl">
-                    <form class="grid grid-cols-1 md:grid-cols-4 gap-4 items-center" action="properties.html" method="GET">
-                        <div class="md:col-span-2">
-                            <label for="location" class="sr-only">Location</label>
-                            <input type="text" id="location" name="location" placeholder="Enter a location, e.g., 'Sarjapur Road'" class="w-full p-3 text-gray-700 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-gold">
+    <!-- Hero Section -->
+    <section id="home" class="relative min-h-[90vh] flex items-center justify-center pt-20 overflow-hidden">
+        <div class="relative z-10 max-w-6xl mx-auto px-6 text-center">
+            <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-white/5 border border-white/10 mb-6 fade-in-up backdrop-blur-md">
+                <span class="w-1.5 h-1.5 rounded-full bg-accent animate-pulse"></span>
+                <span class="text-[10px] font-medium tracking-[0.2em] uppercase text-gray-300">Premier Property Advisory</span>
+            </div>
+            
+            <h1 class="text-4xl md:text-7xl font-display font-bold mb-6 leading-tight tracking-tight fade-in-up delay-100">
+                Crafting the Future <br>
+                <span class="text-gradient-gold">of Real Estate</span>
+            </h1>
+            
+            <p class="text-sm md:text-lg text-gray-400 mb-10 max-w-2xl mx-auto font-light leading-relaxed fade-in-up delay-200">
+                Diradz Properties isn't just about transactions; it's about building lifelong relationships and helping you find a place you can truly call home.
+            </p>
+
+            <div class="flex justify-center gap-4 fade-in-up delay-300">
+                <a href="properties.html" class="bg-accent hover:bg-white hover:text-black text-white px-8 py-3 rounded-full font-bold transition-all duration-300 shadow-[0_0_20px_rgba(223,164,83,0.3)] text-sm uppercase tracking-wide">
+                    View Listings
+                </a>
+                <a href="#contact" class="bg-white/5 hover:bg-white/10 border border-white/10 text-white px-8 py-3 rounded-full font-bold transition-all duration-300 text-sm uppercase tracking-wide">
+                    Contact Us
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Vision, Mission & Values Section (New Content) -->
+    <section id="vision" class="py-24 relative bg-surface/30">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="text-center max-w-3xl mx-auto mb-16 fade-in-up">
+                <h4 class="text-accent font-bold uppercase tracking-[0.2em] text-[10px] mb-2">Our Philosophy</h4>
+                <h2 class="text-3xl md:text-4xl font-display font-bold text-white mb-4">Driven by Purpose</h2>
+            </div>
+
+            <div class="grid md:grid-cols-2 gap-8 mb-16">
+                <!-- Mission -->
+                <div class="glass-panel p-8 rounded-2xl hover-glow fade-in-up">
+                    <div class="w-12 h-12 bg-accent/10 rounded-lg flex items-center justify-center text-accent mb-6">
+                        <i class="ph-fill ph-rocket-launch text-2xl"></i>
+                    </div>
+                    <h3 class="text-2xl font-display font-bold text-white mb-4">Our Mission</h3>
+                    <p class="text-sm text-gray-400 leading-relaxed">
+                        To provide an exceptional real estate experience through unparalleled service, expert market knowledge, and unwavering integrity. We strive to simplify the complexities of buying and selling property, ensuring a smooth and transparent journey for every client.
+                    </p>
+                </div>
+
+                <!-- Vision -->
+                <div class="glass-panel p-8 rounded-2xl hover-glow fade-in-up delay-100">
+                    <div class="w-12 h-12 bg-blue-500/10 rounded-lg flex items-center justify-center text-blue-400 mb-6">
+                        <i class="ph-fill ph-eye text-2xl"></i>
+                    </div>
+                    <h3 class="text-2xl font-display font-bold text-white mb-4">Our Vision</h3>
+                    <p class="text-sm text-gray-400 leading-relaxed">
+                        To be the most trusted and respected real estate brokerage in the region, recognized for our innovative approach, ethical practices, and our deep commitment to the communities we serve. We aim to set new standards of excellence in the industry.
+                    </p>
+                </div>
+            </div>
+
+            <!-- Core Values -->
+            <div class="grid md:grid-cols-3 gap-6 fade-in-up delay-200">
+                <div class="glass-panel p-6 rounded-xl border-t border-white/10 text-center">
+                    <i class="ph-fill ph-shield-check text-3xl text-accent mb-4 inline-block"></i>
+                    <h3 class="text-white font-bold mb-2">Integrity First</h3>
+                    <p class="text-xs text-gray-400">We operate with complete transparency and honesty. Your trust is our most valuable asset.</p>
+                </div>
+                <div class="glass-panel p-6 rounded-xl border-t border-white/10 text-center">
+                    <i class="ph-fill ph-trophy text-3xl text-emerald-500 mb-4 inline-block"></i>
+                    <h3 class="text-white font-bold mb-2">Pursuit of Excellence</h3>
+                    <p class="text-xs text-gray-400">From market analysis to closing the deal, we are relentless in our pursuit of perfection.</p>
+                </div>
+                <div class="glass-panel p-6 rounded-xl border-t border-white/10 text-center">
+                    <i class="ph-fill ph-heart text-3xl text-rose-500 mb-4 inline-block"></i>
+                    <h3 class="text-white font-bold mb-2">Client-Centric</h3>
+                    <p class="text-xs text-gray-400">Your goals are our goals. We listen, we understand, and we deliver results tailored to you.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Featured Listings Teaser -->
+    <section class="py-24 relative">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="flex flex-col md:flex-row justify-between items-end mb-12 gap-4 fade-in-up">
+                <div>
+                    <h4 class="text-accent font-bold uppercase tracking-[0.2em] text-[10px] mb-2">Exclusive Portfolio</h4>
+                    <h2 class="text-3xl md:text-4xl font-display font-bold text-white">Featured Properties</h2>
+                </div>
+                <a href="properties.html" class="text-sm font-bold text-white hover:text-accent flex items-center gap-2 transition">View All Listings <i class="ph-bold ph-arrow-right"></i></a>
+            </div>
+
+            <div class="grid md:grid-cols-3 gap-8">
+                <!-- Card 1 -->
+                <a href="property-detail.html" class="glass-panel rounded-2xl overflow-hidden group hover-glow fade-in-up">
+                    <div class="relative h-64 overflow-hidden">
+                        <span class="absolute top-4 left-4 bg-accent text-black text-[10px] font-bold px-3 py-1 rounded-full z-10 uppercase tracking-wide">For Sale</span>
+                        <img src="https://images.unsplash.com/photo-1600596542815-2251c3052db8?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Villa" class="w-full h-full object-cover group-hover:scale-110 transition duration-700">
+                        <div class="absolute bottom-0 left-0 w-full bg-gradient-to-t from-black/90 to-transparent p-6">
+                            <p class="text-white font-bold text-lg">₹ 4.5 Cr</p>
                         </div>
-                        <div>
-                            <label for="type" class="sr-only">Property Type</label>
-                            <select id="type" name="type" class="w-full p-3 text-gray-700 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-gold">
-                                <option value="">Any Type</option>
-                                <option value="Villa">Villa</option>
-                                <option value="Apartment">Apartment</option>
-                                <option value="Plot">Plot</option>
-                                <option value="RowHouse">Row House</option>
-                            </select>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-lg font-bold text-white mb-1">Serene Lakeside Villa</h3>
+                        <p class="text-gray-500 text-xs mb-4">HSR Layout, Bangalore</p>
+                        <div class="flex justify-between border-t border-white/10 pt-4 text-xs text-gray-400">
+                            <span><i class="ph-fill ph-bed text-accent mr-1"></i> 4 Beds</span>
+                            <span><i class="ph-fill ph-shower text-accent mr-1"></i> 5 Baths</span>
+                            <span><i class="ph-fill ph-frame-corners text-accent mr-1"></i> 4200 sqft</span>
                         </div>
-                        <button type="submit" class="w-full bg-gold text-white font-semibold p-3 rounded-lg hover:opacity-90 transition flex items-center justify-center gap-2">
-                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path></svg>
-                            Search
-                        </button>
+                    </div>
+                </a>
+
+                <!-- Card 2 -->
+                <a href="property-detail.html" class="glass-panel rounded-2xl overflow-hidden group hover-glow fade-in-up delay-100">
+                    <div class="relative h-64 overflow-hidden">
+                        <span class="absolute top-4 left-4 bg-emerald-500 text-white text-[10px] font-bold px-3 py-1 rounded-full z-10 uppercase tracking-wide">Featured</span>
+                        <img src="https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Apartment" class="w-full h-full object-cover group-hover:scale-110 transition duration-700">
+                        <div class="absolute bottom-0 left-0 w-full bg-gradient-to-t from-black/90 to-transparent p-6">
+                            <p class="text-white font-bold text-lg">₹ 3.1 Cr</p>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-lg font-bold text-white mb-1">Contemporary Family House</h3>
+                        <p class="text-gray-500 text-xs mb-4">Whitefield, Bangalore</p>
+                        <div class="flex justify-between border-t border-white/10 pt-4 text-xs text-gray-400">
+                            <span><i class="ph-fill ph-bed text-accent mr-1"></i> 4 Beds</span>
+                            <span><i class="ph-fill ph-shower text-accent mr-1"></i> 4 Baths</span>
+                            <span><i class="ph-fill ph-frame-corners text-accent mr-1"></i> 3200 sqft</span>
+                        </div>
+                    </div>
+                </a>
+
+                <!-- Card 3 -->
+                <a href="property-detail.html" class="glass-panel rounded-2xl overflow-hidden group hover-glow fade-in-up delay-200">
+                    <div class="relative h-64 overflow-hidden">
+                        <span class="absolute top-4 left-4 bg-blue-500 text-white text-[10px] font-bold px-3 py-1 rounded-full z-10 uppercase tracking-wide">New</span>
+                        <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Loft" class="w-full h-full object-cover group-hover:scale-110 transition duration-700">
+                        <div class="absolute bottom-0 left-0 w-full bg-gradient-to-t from-black/90 to-transparent p-6">
+                            <p class="text-white font-bold text-lg">₹ 1.9 Cr</p>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-lg font-bold text-white mb-1">Urban Loft Apartment</h3>
+                        <p class="text-gray-500 text-xs mb-4">Indiranagar, Bangalore</p>
+                        <div class="flex justify-between border-t border-white/10 pt-4 text-xs text-gray-400">
+                            <span><i class="ph-fill ph-bed text-accent mr-1"></i> 2 Beds</span>
+                            <span><i class="ph-fill ph-shower text-accent mr-1"></i> 2 Baths</span>
+                            <span><i class="ph-fill ph-frame-corners text-accent mr-1"></i> 1600 sqft</span>
+                        </div>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section (Preserved) -->
+    <section id="services" class="py-24 relative bg-black/20">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="text-center max-w-3xl mx-auto mb-16 fade-in-up">
+                <h2 class="text-3xl md:text-4xl font-display font-bold text-white mb-4">Core Advisory Services</h2>
+                <p class="text-sm text-gray-400">Comprehensive solutions engineered for the modern real estate landscape.</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <!-- Service 1 -->
+                <div class="glass-panel p-6 rounded-2xl hover-glow fade-in-up group">
+                    <div class="w-10 h-10 rounded-lg bg-blue-500/10 text-blue-400 flex items-center justify-center mb-4 group-hover:bg-blue-500 group-hover:text-white transition-colors">
+                        <i class="ph ph-file-search text-xl"></i>
+                    </div>
+                    <h3 class="text-lg font-display font-bold text-white mb-2">Property Due Diligence</h3>
+                    <p class="text-xs text-gray-400 leading-relaxed">In-depth analysis of property titles, ownership history, and regulatory compliance.</p>
+                </div>
+                <!-- Service 2 -->
+                <div class="glass-panel p-6 rounded-2xl hover-glow fade-in-up delay-100 group">
+                    <div class="w-10 h-10 rounded-lg bg-accent/10 text-accent flex items-center justify-center mb-4 group-hover:bg-accent group-hover:text-white transition-colors">
+                        <i class="ph ph-handshake text-xl"></i>
+                    </div>
+                    <h3 class="text-lg font-display font-bold text-white mb-2">Transaction Advisory</h3>
+                    <p class="text-xs text-gray-400 leading-relaxed">Expert guidance through buying, selling, leasing, or investing.</p>
+                </div>
+                <!-- Service 3 -->
+                <div class="glass-panel p-6 rounded-2xl hover-glow fade-in-up delay-200 group">
+                    <div class="w-10 h-10 rounded-lg bg-emerald-500/10 text-emerald-400 flex items-center justify-center mb-4 group-hover:bg-emerald-500 group-hover:text-white transition-colors">
+                        <i class="ph ph-chart-line-up text-xl"></i>
+                    </div>
+                    <h3 class="text-lg font-display font-bold text-white mb-2">Valuation & Assessment</h3>
+                    <p class="text-xs text-gray-400 leading-relaxed">Professional and unbiased assessment of property values based on market trends.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section (Preserved with Updates) -->
+    <section id="contact" class="py-24 relative overflow-hidden">
+        <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-accent/5 rounded-full blur-3xl pointer-events-none"></div>
+        <div class="max-w-7xl mx-auto px-6 lg:px-8 relative z-10">
+            <div class="grid md:grid-cols-2 gap-12 lg:gap-24">
+                <div class="flex flex-col justify-center fade-in-up">
+                    <h4 class="text-accent font-bold uppercase tracking-[0.2em] text-[10px] mb-4">Connect With Us</h4>
+                    <h2 class="text-3xl md:text-5xl font-display font-bold text-white mb-6">Secure Your Future</h2>
+                    <p class="text-sm text-gray-400 mb-10">Reach out for a consultation or property inquiry.</p>
+                    <div class="space-y-6">
+                        <div class="flex items-start gap-4">
+                            <div class="w-10 h-10 rounded-full border border-white/10 flex items-center justify-center bg-white/5 flex-shrink-0"><i class="ph-fill ph-map-pin text-white text-lg"></i></div>
+                            <div><p class="text-[10px] text-gray-500 uppercase tracking-wider mb-1">Headquarters</p><p class="text-white font-medium text-sm">70/2, Sulikunte Road,<br>Sarjapur Road, Bangalore 562125</p></div>
+                        </div>
+                        <div class="flex items-start gap-4">
+                            <div class="w-10 h-10 rounded-full border border-white/10 flex items-center justify-center bg-white/5 flex-shrink-0"><i class="ph-fill ph-phone text-white text-lg"></i></div>
+                            <div><p class="text-[10px] text-gray-500 uppercase tracking-wider mb-1">Call Us</p><p class="text-white font-medium text-sm">+91 91485 36320</p></div>
+                        </div>
+                        <div class="flex items-start gap-4">
+                            <div class="w-10 h-10 rounded-full border border-white/10 flex items-center justify-center bg-white/5 flex-shrink-0"><i class="ph-fill ph-envelope text-white text-lg"></i></div>
+                            <div><p class="text-[10px] text-gray-500 uppercase tracking-wider mb-1">Email Us</p><p class="text-white font-medium text-sm">info@diradzproperties.com</p></div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Form -->
+                <div class="glass-panel p-6 md:p-8 rounded-2xl fade-in-up delay-200">
+                    <h3 class="text-xl font-display font-bold text-white mb-6">Quick Consultation</h3>
+                    <form class="space-y-4" onsubmit="event.preventDefault(); alert('Thank you!');">
+                        <div class="grid grid-cols-2 gap-4">
+                            <input type="text" placeholder="First Name" class="w-full bg-white/5 border border-white/10 rounded-lg px-4 py-3 text-white text-xs focus:border-accent focus:bg-white/10 transition outline-none">
+                            <input type="text" placeholder="Last Name" class="w-full bg-white/5 border border-white/10 rounded-lg px-4 py-3 text-white text-xs focus:border-accent focus:bg-white/10 transition outline-none">
+                        </div>
+                        <input type="email" placeholder="Email Address" class="w-full bg-white/5 border border-white/10 rounded-lg px-4 py-3 text-white text-xs focus:border-accent focus:bg-white/10 transition outline-none">
+                        <textarea rows="3" placeholder="How can we assist you?" class="w-full bg-white/5 border border-white/10 rounded-lg px-4 py-3 text-white text-xs focus:border-accent focus:bg-white/10 transition outline-none"></textarea>
+                        <button type="submit" class="w-full bg-white text-black hover:bg-accent hover:text-white font-bold py-3 rounded-lg transition-all duration-300 shadow-lg text-sm">Submit Request</button>
                     </form>
                 </div>
             </div>
-        </section>
-        
-        <!-- Other content sections -->
-    </main>
+        </div>
+    </section>
 
-    <!-- Footer from Diradz Solutions -->
-    <footer class="footer relative text-white">
-        <div class="container mx-auto px-6 py-12">
-            <div class="grid grid-cols-1 md:grid-cols-4 gap-8 mb-8">
+    <!-- Footer -->
+    <footer class="border-t border-white/5 bg-[#080b14] pt-16 pb-8">
+        <div class="max-w-7xl mx-auto px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-12 mb-12">
                 <div>
-                    <h3 class="text-xl font-bold mb-4 gold">Diradz Properties</h3>
-                    <p class="text-gray-400">Your trusted partner in real estate, committed to excellence and integrity.</p>
+                    <div class="flex items-center gap-2 mb-6"><span class="font-display font-bold text-xl text-white">DIRADZ</span></div>
+                    <p class="text-gray-500 text-xs leading-relaxed">Empowering clients with informed decisions in the complex world of real estate.</p>
                 </div>
                 <div>
-                    <h3 class="text-lg font-semibold mb-4">Quick Links</h3>
-                    <ul class="space-y-2">
-                        <li><a href="properties.html" class="text-gray-400 hover:text-gold transition">Buy</a></li>
-                        <li><a href="about.html" class="text-gray-400 hover:text-gold transition">About Us</a></li>
-                        <li><a href="blog.html" class="text-gray-400 hover:text-gold transition">Blog</a></li>
-                        <li><a href="contact.html" class="text-gray-400 hover:text-gold transition">Contact</a></li>
+                    <h4 class="text-white font-bold mb-6 text-sm">Navigation</h4>
+                    <ul class="space-y-3 text-xs text-gray-500">
+                        <li><a href="index.html" class="hover:text-accent transition">Home</a></li>
+                        <li><a href="properties.html" class="hover:text-accent transition">Properties</a></li>
+                        <li><a href="blog.html" class="hover:text-accent transition">Insights</a></li>
                     </ul>
                 </div>
-                 <div>
-                    <h3 class="text-lg font-semibold mb-4">Contact Us</h3>
-                    <p class="text-gray-400">#72/2, Sulikunte, Sarjapur Road,<br>Bengaluru, Karnataka 562125</p>
-                    <p class="text-gray-400 mt-2 hover:text-gold transition"><a href="mailto:contact@diradzproperties.com">contact@diradzproperties.com</a></p>
+                <div>
+                    <h4 class="text-white font-bold mb-6 text-sm">Contact</h4>
+                    <ul class="space-y-3 text-xs text-gray-500">
+                        <li>70/2, Sulikunte Road, Bangalore</li>
+                        <li>+91 91485 36320</li>
+                        <li>info@diradzproperties.com</li>
+                    </ul>
                 </div>
                 <div>
-                    <h3 class="text-lg font-semibold mb-4">Follow us on</h3>
-                    <div class="flex items-center space-x-6">
-                        <a href="https://www.facebook.com/share/17E2G5q1XD/" target="_blank" rel="noopener noreferrer" class="text-gray-400 hover:text-gold transition-colors duration-300">
-                            <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M22 12c0-5.523-4.477-10-10-10S2 6.477 2 12c0 4.991 3.657 9.128 8.438 9.878v-6.987h-2.54V12h2.54V9.797c0-2.506 1.492-3.89 3.777-3.89 1.094 0 2.238.195 2.238.195v2.46h-1.26c-1.243 0-1.63.771-1.63 1.562V12h2.773l-.443 2.89h-2.33v6.988C18.343 21.128 22 16.991 22 12z" clip-rule="evenodd" /></svg>
-                        </a>
-                        <a href="https://www.instagram.com/kamaldharmarealty?igsh=MTIyaHY0ZHF6a2ljeQ==" target="_blank" rel="noopener noreferrer" class="text-gray-400 hover:text-gold transition-colors duration-300">
-                            <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M12.315 2c2.43 0 2.784.013 3.808.06 1.064.049 1.791.218 2.427.465a4.902 4.902 0 011.772 1.153 4.902 4.902 0 011.153 1.772c.247.636.416 1.363.465 2.427.048 1.024.06 1.378.06 3.808s-.012 2.784-.06 3.808c-.049 1.064-.218 1.791-.465 2.427a4.902 4.902 0 01-1.153 1.772 4.902 4.902 0 01-1.772 1.153c-.636.247-1.363.416-2.427.465-1.024.048-1.378.06-3.808.06s-2.784-.012-3.808-.06c-1.064-.049-1.791-.218-2.427-.465a4.902 4.902 0 01-1.772-1.153 4.902 4.902 0 01-1.153-1.772c-.247-.636-.416-1.363-.465-2.427-.048-1.024-.06-1.378-.06-3.808s.012-2.784.06-3.808c.049-1.064.218-1.791.465-2.427a4.902 4.902 0 011.153-1.772A4.902 4.902 0 016.345 2.525c.636-.247 1.363.416 2.427-.465C9.793 2.013 10.147 2 12.315 2zm0 1.623c-2.393 0-2.713.01-3.664.058-1.144.053-1.62.224-1.932.348-.45.18-.73.398-1.018.688a2.81 2.81 0 00-.688 1.018c-.123.312-.295.788-.348 1.932-.048.95-.058 1.271-.058 3.664s.01 2.713.058 3.664c.053 1.144.224 1.62.348 1.932.18.45.398.73.688 1.018a2.81 2.81 0 001.018.688c.312.123.788.295 1.932.348.95.048 1.271.058 3.664.058s2.713-.01 3.664-.058c1.144-.053 1.62-.224 1.932-.348.45.18-.73-.398 1.018-.688a2.81 2.81 0 00.688-1.018c.123-.312.295-.788-.348-1.932.048-.95.058-1.271.058-3.664s-.01-2.713-.058-3.664c-.053-1.144-.224-1.62-.348-1.932a2.81 2.81 0 00-.688-1.018c-.288-.288-.568-.508-1.018-.688-.312-.123-.788-.295-1.932-.348C15.028 3.633 14.708 3.623 12.315 3.623z" clip-rule="evenodd" /><path d="M12 8.118a3.882 3.882 0 100 7.764 3.882 3.882 0 000-7.764zM12 14.3a2.3 2.3 0 110-4.6 2.3 2.3 0 010 4.6z"/><path d="M16.882 7.118a.97.97 0 100-1.94.97.97 0 000 1.94z"/></svg>
-                        </a>
-                        <a href="https://x.com/iamkamaldharma?t=dfBtSwRhs4IOR3B-cPSBg&s=09" target="_blank" rel="noopener noreferrer" class="text-gray-400 hover:text-gold transition-colors duration-300">
-                            <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" /></svg>
-                        </a>
-                        <a href="https://wa.me/message/E7C24NJUAKAH1" target="_blank" rel="noopener noreferrer" class="text-gray-400 hover:text-gold transition-colors duration-300">
-                            <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 12c0 1.74.45 3.38 1.25 4.85L2 22l5.25-1.38c1.41.75 3 1.13 4.75 1.13h.04c5.46 0 9.91-4.45 9.91-9.91s-4.45-9.84-9.91-9.84zm4.53 12.28c-.28.42-1.03.78-1.42.83s-.84.05-1.29-.15c-.45-.2-1.02-.48-1.92-1.13c-.9-.65-1.5-1.46-1.72-1.71c-.22-.25-.45-.51-.45-.83s0-.5.15-.65c.15-.15.34-.2.45-.2s.25,0,.38.05c.13.05.28.33.34.42s.08.18.11.28c.03.1.04.15,0,.25c-.04.1-.11.18-.21.28c-.1.1-.21.23-.28.32c-.08.08-.15.17-.04.32c.11.15.48.63.95 1.05c.47.42.87.56 1.02.63c.15.07.24.06.34-.04c.1-.1.42-.48.53-.63c.11-.15.21-.15.34-.1s.41.2.48.25c.07.05.12.08.14.12c.02.04.02.24-.06.48z"/></svg>
-                        </a>
+                    <h4 class="text-white font-bold mb-6 text-sm">Follow</h4>
+                    <div class="flex gap-4 text-lg text-gray-500">
+                        <a href="https://facebook.com/profile.php?id=61559424951686" class="hover:text-blue-500 transition"><i class="ph-fill ph-facebook-logo"></i></a>
+                        <a href="https://wa.me/message/LOOVP320RJ6UI1" class="hover:text-green-500 transition"><i class="ph-fill ph-whatsapp-logo"></i></a>
+                        <a href="#" class="hover:text-pink-500 transition"><i class="ph-fill ph-instagram-logo"></i></a>
                     </div>
                 </div>
             </div>
-            <div class="text-gray-400 text-xs mt-6 border-t border-gray-800 pt-6 text-center">
-                <a href="privacy.html" class="hover:text-gold transition-colors">Privacy Policy</a>
-                <span class="mx-2">|</span>
-                <span>© 2025 Diradz Properties. All Rights Reserved.</span>
-                <p class="mt-2 text-gray-500">Pioneering the Future of Properties.</p>
-            </div>
+            <div class="border-t border-white/5 pt-8 text-center text-xs text-gray-600"><p>© 2025 Diradz Properties. All rights reserved.</p></div>
         </div>
     </footer>
-    
-    <!-- Scripts -->
-    <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
-    <script>
-        document.addEventListener('DOMContentLoaded', function () {
-            // Mobile Menu Toggle
-            const menuBtn = document.getElementById('menu-btn');
-            const mobileMenu = document.getElementById('mobile-menu');
-            const openIcon = document.getElementById('menu-open-icon');
-            const closeIcon = document.getElementById('menu-close-icon');
-            
-            if (menuBtn) {
-                menuBtn.addEventListener('click', () => {
-                    mobileMenu.classList.toggle('hidden');
-                    openIcon.classList.toggle('hidden');
-                    closeIcon.classList.toggle('hidden');
-                });
-            }
 
-            // Swiper Initializations
-            const featuredSwiper = new Swiper('.featured-properties-slider', {
-                loop: true,
-                slidesPerView: 1,
-                spaceBetween: 30,
-                navigation: {
-                    nextEl: '.swiper-button-next',
-                    prevEl: '.swiper-button-prev',
-                },
-                breakpoints: {
-                    640: { slidesPerView: 2 },
-                    1024: { slidesPerView: 3 },
+    <!-- Scripts -->
+    <script>
+        const btn = document.getElementById('mobile-menu-btn');
+        const menu = document.getElementById('mobile-menu');
+        btn.addEventListener('click', () => menu.classList.toggle('hidden'));
+        
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                    observer.unobserve(entry.target);
                 }
             });
-            const testimonialsSwiper = new Swiper('.testimonials-slider', {
-                loop: true,
-                slidesPerView: 1,
-                spaceBetween: 30,
-                autoplay: {
-                    delay: 5000,
-                    disableOnInteraction: false,
-                },
-                pagination: {
-                    el: '.swiper-pagination',
-                    clickable: true,
-                },
-            });
+        }, { threshold: 0.1 });
+        document.querySelectorAll('.fade-in-up').forEach(el => observer.observe(el));
+        
+        window.addEventListener('scroll', () => {
+            const nav = document.getElementById('navbar');
+            if (window.scrollY > 50) { nav.classList.add('shadow-lg', 'bg-background/90'); } 
+            else { nav.classList.remove('shadow-lg', 'bg-background/90'); }
         });
     </script>
 </body>
