@@ -1,175 +1,287 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="scroll-smooth">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Diradz Properties Blog - Real Estate Insights</title>
-    <meta name="description" content="Explore the latest trends, investment tips, and neighborhood guides for the Bangalore real estate market from the experts at Diradz Properties.">
+    <title>Real Estate Insights - Diradz Properties</title>
     
-    <!-- Tailwind CSS & Google Fonts -->
+    <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700;900&family=Poppins:wght@400;500&display=swap" rel="stylesheet">
-    
-    <!-- Custom Styles (Copied from index.html for consistency) -->
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=Plus+Jakarta+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+    <!-- Phosphor Icons -->
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        background: '#0b0f19',
+                        surface: '#131b2c',
+                        glass: 'rgba(255, 255, 255, 0.03)',
+                        glassBorder: 'rgba(255, 255, 255, 0.08)',
+                        accent: '#dfa453',
+                    },
+                    fontFamily: {
+                        sans: ['Plus Jakarta Sans', 'sans-serif'],
+                        display: ['Outfit', 'sans-serif'],
+                    },
+                }
+            }
+        }
+    </script>
     <style>
-        :root {
-            --diradz-gold: #c99040;
-            --dark-text: #1a1a1a;
-            --light-gray-bg: #f8f9fa;
+        body { background-color: #0b0f19; color: #cbd5e1; }
+        .glass-panel {
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            transition: all 0.3s ease;
         }
-        body {
-            font-family: 'Poppins', sans-serif;
-            color: var(--dark-text);
-            background-color: var(--light-gray-bg);
+        .glass-nav {
+            background: rgba(11, 15, 25, 0.8);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
         }
-        h1, h2, h3, h4, h5, h6 { font-family: 'Montserrat', sans-serif; }
-        .bg-gold { background-color: var(--diradz-gold); }
-        .text-gold { color: var(--diradz-gold); }
-        .border-gold { border-color: var(--diradz-gold); }
-        
-        /* Styles from Diradz Solutions for header/footer */
-        .gold { color: var(--diradz-gold); }
-        .diradz-glow { text-shadow: 0 0 8px var(--diradz-gold), 0 0 10px var(--diradz-gold); }
-        .header {
-             position: fixed;
-             top: 0;
-             left: 0;
-             width: 100%;
-             z-index: 100;
-             padding: 1rem 0;
-             background: linear-gradient(to bottom, rgba(10, 25, 47, 0.8), transparent);
-             backdrop-filter: blur(4px);
+        .hover-glow:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 0 25px rgba(223, 164, 83, 0.1);
+            border-color: rgba(223, 164, 83, 0.3);
         }
-        .nav-link:hover { color: var(--diradz-gold); }
-        .footer {
-            background-color: #050d18;
-            border-top: 1px solid rgba(201, 144, 64, 0.2);
+        .text-gradient-gold {
+            background: linear-gradient(135deg, #fcd34d 0%, #dfa453 50%, #b45309 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
         }
     </style>
 </head>
-<body class="bg-light-gray-bg">
+<body class="antialiased font-sans">
 
-    <!-- Header from Diradz Solutions, with updated navigation -->
-    <header class="header">
-        <nav class="container mx-auto px-6 flex justify-between items-center">
-            <a href="index.html" class="nav-link text-2xl font-montserrat font-black flex items-center gap-2 cursor-pointer">
-                <span class="diradz-glow gold">DIRADZ</span>
-                <span class="gold border-2 border-gold px-2 py-1">PROPERTIES</span>
-            </a>
-            <!-- Desktop Menu -->
-            <div class="hidden lg:flex space-x-6 items-center text-sm font-medium">
-                <a href="index.html" class="nav-link text-white font-semibold">Home</a>
-                <a href="properties.html?type=Plot" class="nav-link text-white font-semibold">Plots</a>
-                <a href="properties.html?type=Villa" class="nav-link text-white font-semibold">Villas</a>
-                <a href="properties.html?type=Apartment" class="nav-link text-white font-semibold">Apartments</a>
-                <a href="properties.html?type=RowHouse" class="nav-link text-white font-semibold">Row Houses</a>
-                <a href="properties.html?category=Luxury" class="nav-link text-white font-semibold">Luxuries</a>
-                <a href="about.html" class="nav-link text-white font-semibold">Discover</a>
-                <a href="blog.html" class="nav-link text-gold font-semibold">Blog</a> <!-- Active Page -->
-            </div>
-            <!-- Mobile Menu Button -->
-            <div class="lg:hidden">
-                <button id="menu-btn" type="button" class="z-50 block text-white hover:text-gold focus:outline-none">
-                    <svg class="h-6 w-6 fill-current" viewBox="0 0 24 24">
-                        <path id="menu-open-icon" fill-rule="evenodd" d="M4 6h16a1 1 0 0 1 0 2H4a1 1 0 1 1 0-2zm0 5h16a1 1 0 0 1 0 2H4a1 1 0 1 1 0-2zm0 5h16a1 1 0 0 1 0 2H4a1 1 0 1 1 0-2z"/>
-                        <path id="menu-close-icon" class="hidden" fill-rule="evenodd" d="M18.278 17.278a1 1 0 0 1-1.414 0L12 12.414l-4.864 4.864a1 1 0 0 1-1.414-1.414L10.586 11 5.722 6.136a1 1 0 1 1 1.414-1.414L12 9.586l4.864-4.864a1 1 0 1 1 1.414 1.414L13.414 11l4.864 4.864a1 1 0 0 1 0 1.414z"/>
-                    </svg>
-                </button>
-            </div>
-        </nav>
-        <!-- Mobile Menu -->
-        <div id="mobile-menu" class="hidden lg:hidden absolute top-full left-0 w-full bg-[#0a192f]/95 py-4 backdrop-blur-sm">
-            <div class="flex flex-col items-center space-y-4">
-                <a href="index.html" class="nav-link text-white font-semibold">Home</a>
-                <!-- ... other mobile links ... -->
-                <a href="blog.html" class="nav-link text-gold font-semibold">Blog</a>
+    <!-- Navigation -->
+    <nav class="fixed w-full z-50 glass-nav" id="navbar">
+        <div class="max-w-7xl mx-auto px-6 lg:px-8">
+            <div class="flex justify-between h-20 items-center">
+                <a href="index.html" class="flex items-center gap-3 cursor-pointer group">
+                    <div class="relative w-9 h-9 flex items-center justify-center">
+                        <div class="absolute inset-0 bg-accent opacity-20 blur-md rounded-full group-hover:opacity-40 transition-opacity"></div>
+                        <span class="font-display font-bold text-xl text-accent relative z-10">D</span>
+                    </div>
+                    <div class="flex flex-col">
+                        <span class="font-display text-lg font-bold tracking-wide text-white">DIRADZ</span>
+                        <span class="text-[8px] tracking-[0.2em] text-gray-400 uppercase">Properties</span>
+                    </div>
+                </a>
+
+                <!-- Desktop Menu -->
+                <div class="hidden md:flex space-x-8 items-center">
+                    <a href="index.html" class="text-xs font-medium text-gray-300 hover:text-white transition-all uppercase tracking-wider">Home</a>
+                    <a href="properties.html" class="text-xs font-medium text-gray-300 hover:text-white transition-all uppercase tracking-wider">Properties</a>
+                    <a href="blog.html" class="text-xs font-medium text-white border-b border-accent pb-1 uppercase tracking-wider">Insights</a>
+                    <a href="index.html#contact" class="group relative px-5 py-2 overflow-hidden rounded-full bg-white/5 hover:bg-white/10 transition-all border border-white/10">
+                        <span class="relative text-xs font-bold text-accent group-hover:text-white transition-colors uppercase tracking-wider">Consult Now</span>
+                    </a>
+                </div>
+
+                <!-- Mobile Menu Button -->
+                <div class="md:hidden">
+                    <button id="mobile-menu-btn" class="text-white p-2"><i class="ph ph-list text-2xl"></i></button>
+                </div>
             </div>
         </div>
-    </header>
-
-    <main class="pt-32 pb-20">
-        <div class="container mx-auto px-6">
-            
-            <!-- Page Title -->
-            <div class="text-center mb-16">
-                <h1 class="text-5xl font-black text-dark-text">Real Estate Insights</h1>
-                <p class="mt-4 text-lg text-gray-600">The latest trends, guides, and news from the Bangalore property market.</p>
+        <!-- Mobile Menu Panel -->
+        <div id="mobile-menu" class="hidden md:hidden glass-panel border-t-0 absolute w-full bg-background">
+            <div class="px-4 pt-2 pb-6 space-y-1">
+                <a href="index.html" class="block px-3 py-4 text-sm font-medium text-gray-300 hover:text-white border-b border-white/5">Home</a>
+                <a href="properties.html" class="block px-3 py-4 text-sm font-medium text-gray-300 hover:text-white border-b border-white/5">Properties</a>
+                <a href="blog.html" class="block px-3 py-4 text-sm font-medium text-white border-b border-white/5">Insights</a>
+                <a href="index.html#contact" class="block px-3 py-4 text-sm font-bold text-accent">Consult Now</a>
             </div>
+        </div>
+    </nav>
 
-            <!-- Blog Post List -->
-            <div class="max-w-3xl mx-auto bg-white p-8 rounded-lg shadow-xl border border-gray-200">
-                <div class="space-y-12">
-                    
-                    <!-- Blog Post 1 -->
-                    <article>
-                        <h2 class="text-3xl font-bold text-gold mb-2 hover:underline"><a href="#">Top 5 Emerging Real Estate Hotspots in Bangalore for 2024</a></h2>
-                        <p class="text-sm text-gray-500 mb-4">October 26, 2023 | By Ankit Sharma</p>
-                        <p class="text-gray-700">Beyond the established corridors, new micro-markets are offering incredible value and future growth. We explore the potential of areas like Devanahalli, Hoskote, and more.</p>
-                    </article>
-                    
-                    <!-- Blog Post 2 -->
-                    <article class="pt-8 border-t border-gray-200">
-                        <h2 class="text-3xl font-bold text-gold mb-2 hover:underline"><a href="#">Villa vs. Apartment: Which is the Right Choice for Your Family in Bangalore?</a></h2>
-                        <p class="text-sm text-gray-500 mb-4">October 20, 2023 | By Priya Singh</p>
-                        <p class="text-gray-700">The great debate for Bangalore home buyers. We break down the pros and cons of each lifestyle, considering factors like community, space, maintenance, and long-term investment.</p>
-                    </article>
+    <!-- Header Section -->
+    <section class="pt-32 pb-12 px-6">
+        <div class="max-w-7xl mx-auto text-center">
+            <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-white/5 border border-white/10 mb-6 backdrop-blur-md">
+                <span class="w-1.5 h-1.5 rounded-full bg-accent animate-pulse"></span>
+                <span class="text-[10px] font-medium tracking-[0.2em] uppercase text-gray-300">Market Intelligence</span>
+            </div>
+            <h1 class="text-3xl md:text-5xl font-display font-bold text-white mb-6">
+                Real Estate <span class="text-gradient-gold">Insights</span>
+            </h1>
+            <p class="text-sm text-gray-400 max-w-2xl mx-auto">
+                Explore the latest trends, investment tips, and neighborhood guides for the Bangalore real estate market from our experts.
+            </p>
+        </div>
+    </section>
 
-                    <!-- ... Repeat for 8 more blog posts ... -->
-                    <article class="pt-8 border-t border-gray-200"><h2 class="text-3xl font-bold text-gold mb-2 hover:underline"><a href="#">A First-Time Homebuyer's Checklist for Navigating Bangalore's Market</a></h2><p class="text-sm text-gray-500 mb-4">October 15, 2023 | By Rohan Mehta</p><p class="text-gray-700">From understanding legal documents like the Khata to securing the right home loan, this essential guide demystifies the buying process for newcomers.</p></article>
-                    <article class="pt-8 border-t border-gray-200"><h2 class="text-3xl font-bold text-gold mb-2 hover:underline"><a href="#">The Rise of Gated Communities: Why Whitefield Prefers Them</a></h2><p class="text-sm text-gray-500 mb-4">October 10, 2023 | By Priya Singh</p><p class="text-gray-700">Security, world-class amenities, and a sense of community are driving the demand for properties within gated enclaves. We look at the best options in the Whitefield area.</p></article>
-                    <article class="pt-8 border-t border-gray-200"><h2 class="text-3xl font-bold text-gold mb-2 hover:underline"><a href="#">Maximizing Your Rental Yield in High-Demand Areas like HSR Layout</a></h2><p class="text-sm text-gray-500 mb-4">October 05, 2023 | By Ankit Sharma</p><p class="text-gray-700">For investors, rental income is key. Learn strategies for furnishing, pricing, and managing your property to attract premium tenants in Bangalore's startup hub.</p></article>
-                    <article class="pt-8 border-t border-gray-200"><h2 class="text-3xl font-bold text-gold mb-2 hover:underline"><a href="#">Understanding RERA and Its Impact on Bangalore's Real Estate Transparency</a></h2><p class="text-sm text-gray-500 mb-4">September 28, 2023 | By Rohan Mehta</p><p class="text-gray-700">The Real Estate (Regulation and Development) Act has transformed buyer protection. We explain what it means for you and how to check a project's RERA compliance.</p></article>
-                    <article class="pt-8 border-t border-gray-200"><h2 class="text-3xl font-bold text-gold mb-2 hover:underline"><a href="#">Is Sarjapur Road Still Bangalore's Best Investment Bet?</a></h2><p class="text-sm text-gray-500 mb-4">September 22, 2023 | By Ankit Sharma</p><p class="text-gray-700">With massive commercial development and infrastructure upgrades, we analyze if the Sarjapur Road corridor continues to offer the best return on investment.</p></article>
-                    <article class="pt-8 border-t border-gray-200"><h2 class="text-3xl font-bold text-gold mb-2 hover:underline"><a href="#">The Green Revolution: A Look at Bangalore's Most Sustainable Properties</a></h2><p class="text-sm text-gray-500 mb-4">September 15, 2023 | By Priya Singh</p><p class="text-gray-700">Eco-friendly living is the new luxury. We showcase properties that incorporate rainwater harvesting, solar power, and green building materials.</p></article>
-                    <article class="pt-8 border-t border-gray-200"><h2 class="text-3xl font-bold text-gold mb-2 hover:underline"><a href="#">Luxury Redefined: What to Expect from a 5 Cr+ Property in Koramangala</a></h2><p class="text-sm text-gray-500 mb-4">September 10, 2023 | By Rohan Mehta</p><p class="text-gray-700">Private elevators, rooftop pools, and smart home automation. We dive into the ultra-luxury segment to see what defines a premium property in Bangalore's elite neighborhoods.</p></article>
-                    <article class="pt-8 border-t border-gray-200"><h2 class="text-3xl font-bold text-gold mb-2 hover:underline"><a href="#">Connectivity is King: How the Metro Expansion is Changing Property Values</a></h2><p class="text-sm text-gray-500 mb-4">September 05, 2023 | By Ankit Sharma</p><p class="text-gray-700">The Namma Metro effect is real. We map out how the new and upcoming metro lines are creating new real estate opportunities across the city.</p></article>
+    <!-- Featured Article -->
+    <section class="pb-12 px-6">
+        <div class="max-w-7xl mx-auto">
+            <a href="#" class="glass-panel p-8 rounded-2xl group hover-glow block relative overflow-hidden">
+                <div class="absolute inset-0 bg-gradient-to-r from-accent/10 to-transparent opacity-0 group-hover:opacity-20 transition duration-500"></div>
+                <div class="flex flex-col md:flex-row gap-8 items-center">
+                    <div class="w-full md:w-1/2 h-64 rounded-xl overflow-hidden relative">
+                        <img src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?ixlib=rb-4.0.3" alt="City" class="w-full h-full object-cover group-hover:scale-105 transition duration-700">
+                        <span class="absolute top-4 left-4 bg-accent text-black text-[10px] font-bold px-3 py-1 rounded-full uppercase">Featured</span>
+                    </div>
+                    <div class="w-full md:w-1/2">
+                        <div class="flex items-center gap-3 text-xs text-gray-500 mb-3">
+                            <span class="text-accent"><i class="ph-fill ph-calendar"></i> Oct 26, 2023</span>
+                            <span>•</span>
+                            <span>By Ankit Sharma</span>
+                        </div>
+                        <h2 class="text-2xl font-display font-bold text-white mb-4 group-hover:text-accent transition">Top 5 Emerging Real Estate Hotspots in Bangalore for 2024</h2>
+                        <p class="text-sm text-gray-400 leading-relaxed mb-6">Beyond the established corridors, new micro-markets are offering incredible value and future growth. We explore the potential of areas like Devanahalli, Hoskote, and more.</p>
+                        <span class="text-xs font-bold text-white flex items-center gap-2 group-hover:gap-3 transition-all">Read Article <i class="ph-bold ph-arrow-right"></i></span>
+                    </div>
                 </div>
+            </a>
+        </div>
+    </section>
+
+    <!-- Article Grid -->
+    <section class="pb-24 px-6">
+        <div class="max-w-7xl mx-auto">
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                
+                <!-- Post 1 -->
+                <article class="glass-panel p-6 rounded-2xl group hover-glow">
+                    <div class="h-48 rounded-xl overflow-hidden mb-6">
+                        <img src="https://images.unsplash.com/photo-1564013799919-ab600027ffc6?ixlib=rb-4.0.3" class="w-full h-full object-cover group-hover:scale-110 transition duration-700">
+                    </div>
+                    <div class="flex items-center gap-2 text-[10px] text-gray-500 mb-3">
+                        <span class="text-accent">Oct 20, 2023</span> • <span>Priya Singh</span>
+                    </div>
+                    <h3 class="text-lg font-display font-bold text-white mb-3 group-hover:text-accent transition">Villa vs. Apartment: Right Choice for Your Family?</h3>
+                    <p class="text-xs text-gray-400 leading-relaxed mb-4 line-clamp-3">The great debate for Bangalore home buyers. We break down the pros and cons of each lifestyle, considering community and space.</p>
+                    <a href="#" class="text-[10px] font-bold text-white uppercase tracking-wider hover:text-accent">Read More</a>
+                </article>
+
+                <!-- Post 2 -->
+                <article class="glass-panel p-6 rounded-2xl group hover-glow">
+                    <div class="h-48 rounded-xl overflow-hidden mb-6">
+                        <img src="https://images.unsplash.com/photo-1560518883-ce09059ee971?ixlib=rb-4.0.3" class="w-full h-full object-cover group-hover:scale-110 transition duration-700">
+                    </div>
+                    <div class="flex items-center gap-2 text-[10px] text-gray-500 mb-3">
+                        <span class="text-accent">Oct 15, 2023</span> • <span>Rohan Mehta</span>
+                    </div>
+                    <h3 class="text-lg font-display font-bold text-white mb-3 group-hover:text-accent transition">First-Time Homebuyer's Checklist</h3>
+                    <p class="text-xs text-gray-400 leading-relaxed mb-4 line-clamp-3">From understanding legal documents like the Khata to securing the right home loan, this essential guide demystifies the buying process.</p>
+                    <a href="#" class="text-[10px] font-bold text-white uppercase tracking-wider hover:text-accent">Read More</a>
+                </article>
+
+                <!-- Post 3 -->
+                <article class="glass-panel p-6 rounded-2xl group hover-glow">
+                    <div class="h-48 rounded-xl overflow-hidden mb-6">
+                        <img src="https://images.unsplash.com/photo-1448630360428-65456885c650?ixlib=rb-4.0.3" class="w-full h-full object-cover group-hover:scale-110 transition duration-700">
+                    </div>
+                    <div class="flex items-center gap-2 text-[10px] text-gray-500 mb-3">
+                        <span class="text-accent">Oct 10, 2023</span> • <span>Priya Singh</span>
+                    </div>
+                    <h3 class="text-lg font-display font-bold text-white mb-3 group-hover:text-accent transition">The Rise of Gated Communities in Whitefield</h3>
+                    <p class="text-xs text-gray-400 leading-relaxed mb-4 line-clamp-3">Security, world-class amenities, and a sense of community are driving the demand for properties within gated enclaves.</p>
+                    <a href="#" class="text-[10px] font-bold text-white uppercase tracking-wider hover:text-accent">Read More</a>
+                </article>
+
+                <!-- Post 4 -->
+                <article class="glass-panel p-6 rounded-2xl group hover-glow">
+                    <div class="h-48 rounded-xl overflow-hidden mb-6">
+                        <img src="https://images.unsplash.com/photo-1556912172-45b7abe8ce8e?ixlib=rb-4.0.3" class="w-full h-full object-cover group-hover:scale-110 transition duration-700">
+                    </div>
+                    <div class="flex items-center gap-2 text-[10px] text-gray-500 mb-3">
+                        <span class="text-accent">Oct 05, 2023</span> • <span>Ankit Sharma</span>
+                    </div>
+                    <h3 class="text-lg font-display font-bold text-white mb-3 group-hover:text-accent transition">Maximizing Rental Yield in HSR Layout</h3>
+                    <p class="text-xs text-gray-400 leading-relaxed mb-4 line-clamp-3">Strategies for furnishing, pricing, and managing your property to attract premium tenants in Bangalore's startup hub.</p>
+                    <a href="#" class="text-[10px] font-bold text-white uppercase tracking-wider hover:text-accent">Read More</a>
+                </article>
+
+                <!-- Post 5 -->
+                <article class="glass-panel p-6 rounded-2xl group hover-glow">
+                    <div class="h-48 rounded-xl overflow-hidden mb-6">
+                        <img src="https://images.unsplash.com/photo-1554224155-6726b3ff858f?ixlib=rb-4.0.3" class="w-full h-full object-cover group-hover:scale-110 transition duration-700">
+                    </div>
+                    <div class="flex items-center gap-2 text-[10px] text-gray-500 mb-3">
+                        <span class="text-accent">Sep 28, 2023</span> • <span>Rohan Mehta</span>
+                    </div>
+                    <h3 class="text-lg font-display font-bold text-white mb-3 group-hover:text-accent transition">Understanding RERA in Real Estate</h3>
+                    <p class="text-xs text-gray-400 leading-relaxed mb-4 line-clamp-3">The Real Estate (Regulation and Development) Act has transformed buyer protection. We explain what it means for you.</p>
+                    <a href="#" class="text-[10px] font-bold text-white uppercase tracking-wider hover:text-accent">Read More</a>
+                </article>
+
+                <!-- Post 6 -->
+                <article class="glass-panel p-6 rounded-2xl group hover-glow">
+                    <div class="h-48 rounded-xl overflow-hidden mb-6">
+                        <img src="https://images.unsplash.com/photo-1592595896551-12b371d546d5?ixlib=rb-4.0.3" class="w-full h-full object-cover group-hover:scale-110 transition duration-700">
+                    </div>
+                    <div class="flex items-center gap-2 text-[10px] text-gray-500 mb-3">
+                        <span class="text-accent">Sep 15, 2023</span> • <span>Priya Singh</span>
+                    </div>
+                    <h3 class="text-lg font-display font-bold text-white mb-3 group-hover:text-accent transition">The Green Revolution: Sustainable Properties</h3>
+                    <p class="text-xs text-gray-400 leading-relaxed mb-4 line-clamp-3">Eco-friendly living is the new luxury. We showcase properties that incorporate rainwater harvesting and solar power.</p>
+                    <a href="#" class="text-[10px] font-bold text-white uppercase tracking-wider hover:text-accent">Read More</a>
+                </article>
+
             </div>
 
             <!-- Pagination -->
-            <nav class="mt-16 flex justify-center">
-                <ol class="flex items-center space-x-2 text-sm">
-                    <li>
-                        <a href="#" class="w-10 h-10 flex items-center justify-center font-semibold rounded-full bg-gold text-white">1</a>
-                    </li>
-                    <li>
-                        <a href="#" class="w-10 h-10 flex items-center justify-center font-semibold rounded-full hover:bg-gray-200">2</a>
-                    </li>
-                    <li>
-                        <a href="#" class="w-10 h-10 flex items-center justify-center font-semibold rounded-full hover:bg-gray-200">3</a>
-                    </li>
-                    <li>
-                        <a href="#" class="px-3 py-2 text-gray-500 hover:text-gold">Next &rarr;</a>
-                    </li>
-                </ol>
-            </nav>
-
+            <div class="flex justify-center mt-16 gap-2">
+                <button class="w-10 h-10 rounded-full bg-accent text-white font-bold text-xs flex items-center justify-center hover:bg-white hover:text-black transition">1</button>
+                <button class="w-10 h-10 rounded-full bg-white/5 text-gray-400 font-bold text-xs flex items-center justify-center hover:bg-white hover:text-black transition">2</button>
+                <button class="w-10 h-10 rounded-full bg-white/5 text-gray-400 font-bold text-xs flex items-center justify-center hover:bg-white hover:text-black transition">3</button>
+                <button class="px-4 h-10 rounded-full bg-white/5 text-gray-400 font-bold text-xs flex items-center justify-center hover:bg-white hover:text-black transition">Next <i class="ph-bold ph-arrow-right ml-1"></i></button>
+            </div>
         </div>
-    </main>
+    </section>
 
-    <!-- Footer from Diradz Solutions -->
-    <footer class="footer relative text-white">
-        <!-- ... same footer content as index.html ... -->
+    <!-- Footer -->
+    <footer class="border-t border-white/5 bg-[#080b14] pt-16 pb-8">
+        <div class="max-w-7xl mx-auto px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-12 mb-12">
+                <div>
+                    <div class="flex items-center gap-2 mb-6"><span class="font-display font-bold text-xl text-white">DIRADZ</span></div>
+                    <p class="text-gray-500 text-xs leading-relaxed">Empowering clients with informed decisions in the complex world of real estate.</p>
+                </div>
+                <div>
+                    <h4 class="text-white font-bold mb-6 text-sm">Navigation</h4>
+                    <ul class="space-y-3 text-xs text-gray-500">
+                        <li><a href="index.html" class="hover:text-accent transition">Home</a></li>
+                        <li><a href="properties.html" class="hover:text-accent transition">Properties</a></li>
+                        <li><a href="blog.html" class="hover:text-accent transition">Insights</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-white font-bold mb-6 text-sm">Contact</h4>
+                    <ul class="space-y-3 text-xs text-gray-500">
+                        <li>70/2, Sulikunte Road, Bangalore</li>
+                        <li>+91 91485 36320</li>
+                        <li>info@diradzproperties.com</li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-white font-bold mb-6 text-sm">Follow</h4>
+                    <div class="flex gap-4 text-lg text-gray-500">
+                        <a href="https://facebook.com/profile.php?id=61559424951686" class="hover:text-blue-500 transition"><i class="ph-fill ph-facebook-logo"></i></a>
+                        <a href="https://wa.me/message/LOOVP320RJ6UI1" class="hover:text-green-500 transition"><i class="ph-fill ph-whatsapp-logo"></i></a>
+                        <a href="#" class="hover:text-pink-500 transition"><i class="ph-fill ph-instagram-logo"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="border-t border-white/5 pt-8 text-center text-xs text-gray-600"><p>© 2025 Diradz Properties. All rights reserved.</p></div>
+        </div>
     </footer>
 
-    <!-- JS for Mobile Menu -->
     <script>
-        document.addEventListener('DOMContentLoaded', function () {
-            const menuBtn = document.getElementById('menu-btn');
-            const mobileMenu = document.getElementById('mobile-menu');
-            const openIcon = document.getElementById('menu-open-icon');
-            const closeIcon = document.getElementById('menu-close-icon');
-            
-            if (menuBtn) {
-                menuBtn.addEventListener('click', () => {
-                    mobileMenu.classList.toggle('hidden');
-                    openIcon.classList.toggle('hidden');
-                    closeIcon.classList.toggle('hidden');
-                });
-            }
-        });
+        const btn = document.getElementById('mobile-menu-btn');
+        const menu = document.getElementById('mobile-menu');
+        btn.addEventListener('click', () => menu.classList.toggle('hidden'));
     </script>
 </body>
 </html>
